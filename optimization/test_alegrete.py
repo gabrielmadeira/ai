@@ -23,6 +23,7 @@ class TestAlegrete(unittest.TestCase):
         # comparacao de floats com precisao de 11 casas
         self.assertAlmostEqual(0.95, new_theta0, 11)
         self.assertAlmostEqual(0.55, new_theta1, 11)
+        self.assertAlmostEqual(2.33375, alegrete.compute_mse(new_theta0, new_theta1, data), 11)
 
 
 if __name__ == '__main__':
