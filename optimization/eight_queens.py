@@ -136,6 +136,55 @@ def run_ga(g, n, k, m, e):
         pop = newPop
     return tournament(pop)
 
+
+def run_ga_with_metrics(g, n, k, m, e):
+    """
+    Executa o algoritmo genético e retorna o indivíduo com o menor número de ataques entre rainhas
+    :param g:int - numero de gerações
+    :param n:int - numero de individuos
+    :param k:int - numero de participantes do torneio
+    :param m:float - probabilidade de mutação (entre 0 e 1, inclusive)
+    :param e:bool - se vai haver elitismo
+    :return:list - melhor individuo encontrado
+    """
+    pop = list()
+    metrics = list()
+    for i in range(0,n):
+        ind = list()
+        for j in range(0,8):
+            rand = random.randint(1,8)
+            ind.append(rand )
+        pop.append(ind)
+
+    for gen in range(0, g):
+        newPop = elitism(pop, e)
         
-    
-    #raise NotImplementedError  # substituir pelo seu codigo
+        while(len(newPop) < n):
+            participants = list()
+            for j in range(0, k):
+                participants.append(pop[random.randint(0,n-1)])
+            
+            p1 = tournament(participants)
+            participants = list()
+            for j in range(0, k):
+                participants.append(pop[random.randint(0,n-1)])
+            p2 = tournament(participants)
+            
+            index = random.randint(1,6)
+
+            cv = crossover(p1,p2,index)
+            o1 = cv[0]
+            o2 = cv[1]
+            o1 = mutate(o1,m)
+            o2 = mutate(o2,m)
+            newPop.append(o1)
+            newPop.append(o2)
+
+        metricsNewPop = list()
+        for ind in newPop:
+            metricsNewPop.append(evaluate(ind))
+        metricsNewPop.sort()
+        metrics.append(metricsNewPop)
+        pop = newPop
+    best = tournament(pop)
+    return [best, metrics]
