@@ -71,6 +71,24 @@ def crossover(parent1, parent2, index):
     return children
 
 
+def crossover_3(parent1, parent2, index_k):
+    """
+    Realiza o crossover de três pontos: recebe dois indivíduos e uma lista ordenada de 
+    pontos de cruzamentos (indices) a partir do qual os genes serão trocados. Retorna os
+    dois indivíduos com o material genético trocado.
+    A ordem dos dois indivíduos retornados não é importante
+    :param parent1:list
+    :param parent2:list
+    :param index:list
+    :return:list,list
+    """
+    o1 = parent1[0:index_k[0]] + parent2[index_k[0]:index_k[1]] + parent1[index_k[1]:index_k[2]] + parent2[index_k[2]:8]
+    o2 = parent2[0:index_k[0]] + parent1[index_k[0]:index_k[1]] + parent2[index_k[1]:index_k[2]] + parent1[index_k[2]:8]
+
+    children = [o1,o2] 
+
+    return children
+
 def mutate(individual, m):
     """
     Recebe um indivíduo e a probabilidade de mutação (m).
@@ -89,6 +107,19 @@ def mutate(individual, m):
     return individual
     # raise NotImplementedError  # substituir pelo seu codigo
 
+def mutate_flip(individual, m):
+    """
+    Recebe um indivíduo e a probabilidade de mutação (m).
+    Caso random() < m, inverte o conteúdo do indivíduo
+    :param individual:list
+    :param m:int - probabilidade de mutacao
+    :return:list - individuo apos mutacao (ou intacto, caso a prob. de mutacao nao seja satisfeita)
+    """
+    rand = random.uniform(0, 1)
+    if rand < m:
+        individual.reverse()
+    return individual
+    # raise NotImplementedError  # substituir pelo seu codigo
 
 def run_ga(g, n, k, m, e):
     """
@@ -122,13 +153,14 @@ def run_ga(g, n, k, m, e):
                 participants.append(pop[random.randint(0,n-1)])
             p2 = tournament(participants)
             
-            index = random.randint(1,6)
+            index_k = [random.randint(1,6),random.randint(1,6),random.randint(1,6)]
+            index_k.sort()
 
-            cv = crossover(p1,p2,index)
+            cv = crossover_3(p1,p2,index_k)
             o1 = cv[0]
             o2 = cv[1]
-            o1 = mutate(o1,m)
-            o2 = mutate(o2,m)
+            o1 = mutate_flip(o1,m)
+            o2 = mutate_flip(o2,m)
             newPop.append(o1)
             newPop.append(o2)
         pop = newPop
@@ -168,13 +200,14 @@ def run_ga_with_metrics(g, n, k, m, e):
                 participants.append(pop[random.randint(0,n-1)])
             p2 = tournament(participants)
             
-            index = random.randint(1,6)
+            index_k = [random.randint(1,6),random.randint(1,6),random.randint(1,6)]
+            index_k.sort()
 
-            cv = crossover(p1,p2,index)
+            cv = crossover_3(p1,p2,index_k)
             o1 = cv[0]
             o2 = cv[1]
-            o1 = mutate(o1,m)
-            o2 = mutate(o2,m)
+            o1 = mutate_flip(o1,m)
+            o2 = mutate_flip(o2,m)
             newPop.append(o1)
             newPop.append(o2)
 
