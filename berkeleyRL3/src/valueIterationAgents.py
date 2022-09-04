@@ -44,7 +44,7 @@ class ValueIterationAgent(ValueEstimationAgent):
 
         # Write value iteration code here
         states = mdp.getStates()
-        for i in range(0,iterations):
+        for iter in range(0,iterations):
             currentValues=self.values.copy()
             for state in states:
                 actions=mdp.getPossibleActions(state)
