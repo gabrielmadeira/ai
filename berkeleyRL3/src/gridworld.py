@@ -299,8 +299,8 @@ def getBridgeGrid():
 
 def getBookGrid():
     grid = [[' ',' ',' ',+1],
-            [' ','#',' ',-1],
-            ['S',' ',' ',' ']]
+            [' ','#','S',-1],
+            [' ',' ',' ',' ']]
     return Gridworld(grid)
 
 def getMazeGrid():

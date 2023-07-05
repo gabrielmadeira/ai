@@ -1,19 +1,16 @@
-João Pedro Lopes Bazotti - 00323915 - Turma A
+# ai
 
-Gabriel Madeira - 00322863 - Turma B
+Assignments developed in the Artificial intelligence course at [INF](https://inf.ufrgs.br)-[UFRGS](https://ufrgs.br).
 
-Vitoria Colonetti Benedet - 00303081 - Turma B
+## Assignment #1 (search): Graph search for 8-puzzle solutions
+- Implemented algorithms: BFS, DFS, A* Hamming/Manhattan
 
-## Valores dos parâmetros do algoritmo genético (g, n, k, m, e) que resultem na execução que encontra uma configuração o menor número de ataques que foi possível obter.
+## Assignment #2 (othello): Creation of an artificial intelligence agent for the Othello game
+- Agent implemented with the Monte Carlo algorithm
+- See our agent (invictus^-1) playing in the course agent competition: [Youtube Link](https://www.youtube.com/live/44ZjUUF88lk?feature=share&t=3044)
 
-(40, 40, 3, 0.7, 2)
+## Assignment #3 (optimization): Separated in two tasks:
+- Implementation of genetic algorithm to solve eight queen problem
+- Implementation of gradient descent algorithm to create a linear regression to predict the price of farms from a dummy dataset
 
-## Instruções de como executar o algoritmo genético e obter o gráfico que você enviou.
-
-- Abrir o notebook eight_queens.ipynb e rodar as células
-
-De acordo com nossos testes a melhor regressão linear acontenceu com theta_0 e theta_1 como 0, alpha valendo 0.001 e com num_iterations valendo 30000, obtendo um erro quadrático médio quadrático de 8.527708192028557, números maiores de iterações melhoram esse valor porém o aumento com 100000 iterações é de menos de 0.000000001.
-Com features normalizadas o erro quadrático fica 0.014884927677517031
-
-## Documentação do(s) extra(s) implementado(s)
-No notebook alegrete as features são normalizadas entre 0 e 1 na segunda celula
+## Assignment #4 (berkeleyRL3): Implementation of reinforcement learning algorithms and analysis of the influence of some parameters

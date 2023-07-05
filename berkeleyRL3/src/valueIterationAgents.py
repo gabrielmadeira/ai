@@ -75,7 +75,6 @@ class ValueIterationAgent(ValueEstimationAgent):
         for i in range(0,len(transitionState)):
             Qvalue+=probs[i]*(self.discount*self.values[transitionState[i]] + self.mdp.getReward(state,action,transitionState[i]))
         return Qvalue
-
     def computeActionFromValues(self, state):
         """
           The policy is the best action in the given state
